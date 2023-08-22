@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="MiniRpgGame.UserControls.RegionsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MiniRpgGame.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Background" Value="LightYellow"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="Margin" Value="15"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.Background>
+            <ImageBrush x:Name="BackgroundImage" ImageSource="../images/backgroundpic.png" Stretch="UniformToFill"></ImageBrush>
+        </Grid.Background>
+
+        <Grid Grid.Row="0">
+            <Button x:Name="BackButton" Click="BackButton_Click" Margin="0 15 0 0" Background="Gray" Foreground="Black" Height="60" Width="100" FontSize="40">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+
+                                    <Grid>
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonState">
+                                                <VisualState x:Name="Normal"/>
+                                                <VisualState x:Name="MouseOver">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0" Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="LightGray"/>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Border x:Name="Border" Background="Gray" BorderBrush="Black" BorderThickness="3">
+
+                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Path Data="M 410.312 454.729 151.767 244.996 410.312 35.271 381.693 0 79.688 244.996 381.693 490 Z" Fill="Black" Stretch="Fill" Height="20" Width="30"/>
+
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Content="Forest" Click="ForestButton_Click" x:Name="ForestButton"/>
+                <Button Content="Swamps" Click="SwampsButton_Click" x:Name="SwampsButton"/>
+                <Button Content="Mountains" Click="MountainsButton_Click" x:Name="MountainsButton"/>
+                <Button Content="Sea" Click="SeaButton_Click" x:Name="SeaButton"/>
+                <Button Content="Underworld" Click="UnderworldButton_Click" x:Name="UnderworldButton"/>
+            </StackPanel>
+        </Grid>
+
+        
+    </Grid>
+
+    
+
+    
+</UserControl>

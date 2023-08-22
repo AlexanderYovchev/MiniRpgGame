@@ -1,0 +1,222 @@
+﻿<UserControl x:Class="MiniRpgGame.UserControls.MainMenuUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MiniRpgGame.UserControls"
+             mc:Ignorable="d"
+             Height="1000" Width="1000">
+
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="Zero" Height="70"/>
+            <RowDefinition x:Name="First" Height="60"/>
+            <RowDefinition x:Name="Second" Height="40"/>
+            <RowDefinition x:Name="Third" Height="200"/>
+            <RowDefinition x:Name="Fourth" Height="250"/>
+            <RowDefinition x:Name="Fifth" Height="35"/>
+            <RowDefinition x:Name="Sixth" Height="*"/>
+            <RowDefinition x:Name="Seventh" Height="70"/>
+            <RowDefinition x:Name="Eight" Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.Background>
+            <ImageBrush x:Name="BackgroundImage" ImageSource="../images/backgroundpic.png" Stretch="UniformToFill"></ImageBrush>
+        </Grid.Background>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Opacity" Value="1.2"/>
+                        <Setter Property="Background" Value="LightBlue"/>
+                        <Setter Property="Width" Value="120"/>
+                        <Setter Property="Height" Value="50"/>
+                        <Setter Property="FontSize" Value="24"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="3"/>
+
+                    </Style>
+                </StackPanel.Resources>
+
+                <Button Content="Character" x:Name="CharacterInfoButton" Click="CharacterInfoButton_Click"/>
+                <Button Content="Regions" x:Name="RegionsButton" Click="RegionsButton_Click"/>
+                <Button Content="Shop" x:Name="ShopButton"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <TextBlock Text="Region Name" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" 
+                       Foreground="Green" Opacity="0.8" Background="LightBlue" Width="Auto"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Button x:Name="RoamButton" Click="RoamButton_Click" Content="Roam" FontSize="25" Foreground="Black" Width="100" Margin="0 5 0 -5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="Normal"/>
+                                                <VisualState x:Name="MouseOver">
+                                                    <Storyboard>
+                                                        <ColorAnimation Duration="0" Storyboard.TargetName="Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="LightGreen"/>
+                                                    </Storyboard>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+
+                                        <Border x:Name="Border" Background="Green" CornerRadius="10" BorderBrush="Black" BorderThickness="3">
+                                            <ContentPresenter Content="Roam" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </Grid>
+
+                                </ControlTemplate>
+
+                                
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="0">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 30 0 0">
+                <StackPanel.Resources>
+                    <Style TargetType="ProgressBar">
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Width" Value="200"/>
+                    </Style>
+                </StackPanel.Resources>
+                
+                <ProgressBar x:Name="CharacterHealthBar" Background="Transparent" Foreground="Red" Value="100" Maximum="100" Minimum="0">
+                    <ProgressBar.Template>
+                        <ControlTemplate TargetType="ProgressBar">
+                            <Grid >
+                                <Border BorderBrush="Black" BorderThickness="1">
+
+                                </Border>
+                                <!-- Original ProgressBar template content -->
+                                <Rectangle x:Name="PART_Track" Fill="{TemplateBinding Background}" />
+                                <Rectangle x:Name="PART_Indicator" Fill="{TemplateBinding Foreground}" HorizontalAlignment="Left" />
+                                <TextBlock Text="HP" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="Black" FontWeight="Bold"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </ProgressBar.Template>
+                </ProgressBar>
+
+                <ProgressBar x:Name="CharacterManaBar" Margin="0 20 0 0">
+                    <ProgressBar.Template>
+                        <ControlTemplate TargetType="ProgressBar">
+                            <Grid Background="Blue">
+                                <TextBlock Text="Mana" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="Black" FontWeight="Bold"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </ProgressBar.Template>
+                </ProgressBar>
+
+                <TextBlock x:Name="CharacterClassTypeTextBox" Text="CharacterType" FontSize="20" FontWeight="Heavy" Foreground="Green" Margin="0 40 0 0" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightYellow" Opacity="0.8" />
+                
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="1">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 0 30 0 0">
+                <StackPanel.Resources>
+                    <Style TargetType="ProgressBar">
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Width" Value="200"/>
+                    </Style>
+                </StackPanel.Resources>
+
+                <ProgressBar x:Name="MonsterHealthBar" Minimum="0" Maximum="100" Value="0" Margin="0 60 0 0" Background="Transparent" Foreground="Red">
+
+                    <ProgressBar.Template>
+                        <ControlTemplate TargetType="{x:Type ProgressBar}">
+                            
+                            <Grid>
+                                <Border BorderBrush="Black" BorderThickness="1">
+                                    
+                                </Border>
+                                <!-- Original ProgressBar template content -->
+                                <Rectangle x:Name="PART_Track" Fill="{TemplateBinding Background}" />
+                                <Rectangle x:Name="PART_Indicator" Fill="{TemplateBinding Foreground}" HorizontalAlignment="Left" />
+
+                                <!-- TextBlock overlay inside the ProgressBar -->
+                                <TextBlock Name="textBlock" Text="HP" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="Black"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </ProgressBar.Template>
+
+
+                </ProgressBar>
+
+                
+
+                <TextBlock x:Name="MonsterTypeTextBlock" Text="MonsterType" FontSize="20" FontWeight="Heavy" Foreground="Green" Margin="90" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightYellow" Opacity="0.8" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="4" Grid.Column="0">
+            <Image x:Name="WarriorImage" Source="..\images\warriorImage.jpg" Visibility="Collapsed"/>
+            <Image x:Name="ArcherImage" Source="..\images\archerImage.jpg" Visibility="Collapsed"/>
+            <Image x:Name="MageImage" Source="..\images\mageImage.jpg" Visibility="Collapsed"/>
+
+        </Grid>
+
+        <Grid Grid.Row="4" Grid.Column="1">
+            <Image x:Name="MonsterImage" />
+        </Grid>
+
+        <Grid Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image x:Name="CrossedSwordsImage" Source="..\images\crossedSwords.png" Height="200" Width="200">
+                
+            </Image>
+        </Grid>
+
+        <Grid Grid.Row="5" Grid.Column="0">
+            <TextBlock x:Name="CharacterAttackTextBlock" Text="CharacterAttackDmg" Height="Auto" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"
+                       Background="LightYellow" Foreground="Green" FontSize="25" />
+        </Grid>
+
+        <Grid Grid.Row="5" Grid.Column="1">
+
+            <TextBlock x:Name="MonsterAttackTextBlock" Text="MonsterAttackDmg" Height="Auto" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0" 
+                       Background="LightYellow" Foreground="Red" FontSize="25" />
+        </Grid>
+
+        <Grid Grid.Row="6" Grid.Column="0">
+            <Button x:Name="CharacterAttackButton" Click="CharacterAttackButton_Click" Background="Green" Foreground="Cyan" BorderBrush="Black" BorderThickness="5" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 20 0 0"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                    Content="Attack" FontSize="40" FontWeight="Black" Width="200" Height="70" />
+        </Grid>
+
+        <Grid Grid.Row="7" Grid.ColumnSpan="2">
+            <ProgressBar x:Name="MonsterAttackProgressBar" Value="0" Maximum="100" Width="300" Height="40" Background="Transparent" Foreground="Cyan" BorderBrush="Black" BorderThickness="2"/>
+        </Grid>
+
+        <ContentControl x:Name="CharacterInfoContent"/>
+        <ContentControl x:Name="RegionsContent"/>
+        <ContentControl x:Name="ShopContent"/>
+
+
+
+    </Grid>
+</UserControl>

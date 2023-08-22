@@ -1,0 +1,118 @@
+﻿<Window x:Class="MiniRpgGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:usercontrols="clr-namespace:MiniRpgGame.UserControls" xmlns:usercontrols1="clr-namespace:MiniRpgGame.CharacterClasses.CharacterClassInterface"
+        mc:Ignorable="d"
+        
+        Title="MainWindow" Height="594" Width="789">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        
+        
+        <Grid.Background>
+            <ImageBrush x:Name="BackgroundImage" Stretch="UniformToFill"></ImageBrush>
+        </Grid.Background>
+
+
+        <Grid Grid.Row="0">
+            <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Opacity" Value="0.7"/>
+                        <Setter Property="Margin" Value="10"/>
+                        <Setter Property="Width" Value="Auto"/>
+                        <Setter Property="FontSize" Value="30"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Background" Value="LightYellow"/>
+                        <Setter Property="Opacity" Value="1.0"/>
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock Text="Write your name" Background="LightYellow" TextWrapping="Wrap"/>
+                <TextBox x:Name="CharacterNameField" TextAlignment="Center" Background="LightYellow" TextWrapping="Wrap"/>
+            </StackPanel>
+            
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Opacity" Value="0.7"/>
+                        <Setter Property="Margin" Value="10"/>
+                        <Setter Property="FontSize" Value="30"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Background" Value="LightYellow"/>
+                        <Setter Property="Opacity" Value="1.0"/>
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="Width" Value="200"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock Text="Pick a class" Background="LightYellow" TextWrapping="Wrap"/>
+                <ComboBox SelectionChanged="ClassDropDownMenu_SelectionChanged" x:Name="ClassDropDownMenu"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Opacity" Value="0.7"/>
+                        <Setter Property="Margin" Value="10"/>
+                        <Setter Property="Width" Value="Auto"/>
+                        <Setter Property="FontSize" Value="30"/>
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="Width" Value="200"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock Text="Pick a starting weapon" Background="LightYellow" TextWrapping="Wrap"/>
+                <ComboBox x:Name="WeaponClassDropDownMenu"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button  x:Name="BeginButton" Click="BeginButton_Click" Content="BEGIN" Height="80" Width="150" FontSize="40" />
+            </StackPanel>
+            
+        </Grid>
+        <Grid Grid.Row="4">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Opacity" Value="2"/>
+                        <Setter Property="Margin" Value="10"/>
+                        <Setter Property="Foreground" Value="Red"/>
+                        <Setter Property="FontSize" Value="25"/>
+                        <Setter Property="FontWeight" Value="Black"/>
+
+                    </Style> 
+                </StackPanel.Resources>
+                <TextBlock x:Name="ErrorMsgBlock" Background="LightYellow"/>
+            </StackPanel>
+        </Grid>
+        <ContentControl x:Name="ContentContainer" />
+        </Grid>
+</Window>
