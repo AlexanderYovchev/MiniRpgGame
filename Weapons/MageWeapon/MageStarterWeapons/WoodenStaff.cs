@@ -8,7 +8,7 @@ namespace MiniRpgGame.Weapons.MageWeapon.MageStarterWeapons
 {
     public class WoodenStaff : MageStartedWeaponClass
     {
-        private Random attackDamage;
+        private Random attackDamage = new Random();
         private const int minDmg = 1;
         private const int maxDmg = 12;
 
@@ -23,7 +23,7 @@ namespace MiniRpgGame.Weapons.MageWeapon.MageStarterWeapons
 
         public override int MaxDmg { get => maxDmg;}
 
-        public override Random CritChance { get; set; }
+        public override Random CritChance { get; set; } = new Random();
 
 
         public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);

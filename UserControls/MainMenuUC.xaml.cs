@@ -164,10 +164,12 @@ namespace MiniRpgGame.UserControls
                 ShopButton.IsEnabled = false;
                 RoamButton.IsEnabled = false;
                 CharacterAttackButton.IsEnabled = false;
-                CurrentMonster.Health -= CurrentCharacter.Weapon.AttackInitialize();
+                int damage = CurrentCharacter.Weapon.AttackInitialize();
+                CurrentMonster.Health -= damage;
 
                 MonsterHealthBar.Value = CurrentMonster.Health;
 
+                ShowFloatingDamage(MonsterFloatDmg, damage);
 
                 BackgroundWorkerInitialization();
 
@@ -204,9 +206,12 @@ namespace MiniRpgGame.UserControls
 
         private void worker_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
-            CurrentCharacter.Health -= CurrentMonster.MonsterAttack();
+            int damage = CurrentMonster.MonsterAttack();
+            CurrentCharacter.Health -= damage;
 
             CharacterHealthBar.Value = CurrentCharacter.Health;
+
+            ShowFloatingDamage(CharacterFloatDmg, damage);
 
             MonsterAttackProgressBar.Value = 0;
 
@@ -268,5 +273,43 @@ namespace MiniRpgGame.UserControls
             CharacterHealthBar.Maximum = CurrentCharacter.Health;
             CharacterHealthBar.Value = CurrentCharacter.Health;
         }
+
+        public async void ShowFloatingDamage(TextBlock targetTextblock, int damage)
+        {
+            targetTextblock.Text = $"-{damage.ToString()}";
+            
+            targetTextblock.Visibility = Visibility.Visible;
+
+            DoubleAnimation popAnimation = new DoubleAnimation
+            {
+                From = 0,
+                To = -30,  
+                Duration = TimeSpan.FromSeconds(0.5)
+            };
+
+            DoubleAnimation fadeAnimation = new DoubleAnimation
+            {
+                From = 1.0,
+                To = 0.0,
+                Duration = TimeSpan.FromSeconds(2.0)
+            };
+
+            Storyboard storyboard = new Storyboard();
+            storyboard.Children.Add(popAnimation);
+            storyboard.Children.Add(fadeAnimation);
+            Storyboard.SetTarget(popAnimation, targetTextblock);
+            Storyboard.SetTarget(fadeAnimation, targetTextblock);
+            Storyboard.SetTargetProperty(popAnimation, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.Y)"));
+            Storyboard.SetTargetProperty(fadeAnimation, new PropertyPath(UIElement.OpacityProperty));
+
+            TranslateTransform translateTransform = new TranslateTransform();
+            targetTextblock.RenderTransform = translateTransform;
+
+            storyboard.Begin();
+
+            await Task.Delay(1500 + (int)fadeAnimation.Duration.TimeSpan.TotalMilliseconds);
+
+            targetTextblock.Visibility = Visibility.Collapsed;
+        } 
     }
 }
