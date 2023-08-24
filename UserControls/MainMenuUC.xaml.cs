@@ -1,6 +1,7 @@
 ﻿using MiniRpgGame.CharacterClasses.CharacterClassInterface;
 using MiniRpgGame.Monsters;
 using MiniRpgGame.Monsters.Forest_Monsters;
+using MiniRpgGame.Monsters.Swamp_Monsters;
 using MiniRpgGame.Weapons;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace MiniRpgGame.UserControls
     /// </summary>
     public partial class MainMenuUC : UserControl
     {
+        private Type originalMonsterType;
+
         public Random RandomEncounter { get; set; } = new Random();
 
         private BackgroundWorker worker;
@@ -43,7 +46,11 @@ namespace MiniRpgGame.UserControls
 
             TransferStats(currentCharacter, currentWeapon, currentMonster, currentImage);
 
+            SavedStats();
+
             ExpectedBackgroundImage();
+
+            
 
 
             if (CurrentMonster != null)
@@ -87,7 +94,7 @@ namespace MiniRpgGame.UserControls
 
         private void RoamButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            originalMonsterType = CurrentMonster.GetType();
             int encounterValue = RandomEncounter.Next(1, 1000);
             if (CurrentMonster.GetType().Name == "ForestMonstersAbstract")
             {
@@ -96,7 +103,7 @@ namespace MiniRpgGame.UserControls
                 {
                     CurrentMonster = new ForestRat();
                     MonsterImage.Source = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/ratImage.png"));
-                    MonsterHealthBar.Maximum = 100;
+                    MonsterHealthBar.Maximum = CurrentMonster.HealthCap;
                     MonsterHealthBar.Value = MonsterHealthBar.Maximum;
                     CurrentMonster.Health = (int)MonsterHealthBar.Value;
                     RoamButton.IsEnabled = false;
@@ -106,7 +113,7 @@ namespace MiniRpgGame.UserControls
                 {
                     CurrentMonster = new Rabbit();
                     MonsterImage.Source = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/rabbitImage.png"));
-                    MonsterHealthBar.Maximum = 150;
+                    MonsterHealthBar.Maximum = CurrentMonster.HealthCap;
                     MonsterHealthBar.Value = MonsterHealthBar.Maximum;
                     CurrentMonster.Health = (int)MonsterHealthBar.Value;
                     RoamButton.IsEnabled = false;
@@ -116,7 +123,7 @@ namespace MiniRpgGame.UserControls
                 {
                     CurrentMonster = new Squirrel();
                     MonsterImage.Source = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/squirrelImage.png"));
-                    MonsterHealthBar.Maximum = 200;
+                    MonsterHealthBar.Maximum = CurrentMonster.HealthCap;
                     MonsterHealthBar.Value = MonsterHealthBar.Maximum;
                     CurrentMonster.Health = (int)MonsterHealthBar.Value;
                     RoamButton.IsEnabled = false;
@@ -127,7 +134,7 @@ namespace MiniRpgGame.UserControls
                 {
                     CurrentMonster = new Deer();
                     MonsterImage.Source = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/deerImage.png"));
-                    MonsterHealthBar.Maximum = 300;
+                    MonsterHealthBar.Maximum = CurrentMonster.HealthCap;
                     MonsterHealthBar.Value = MonsterHealthBar.Maximum;
                     CurrentMonster.Health = (int)MonsterHealthBar.Value;
                     RoamButton.IsEnabled = false;
@@ -142,6 +149,67 @@ namespace MiniRpgGame.UserControls
 
                 
             }
+
+            else if (CurrentMonster.GetType().Name == "SwampsMonsterAbstract")
+            {
+                if (encounterValue > 300 && encounterValue <= 600)
+                {
+                    CurrentMonster = new Mosquito();
+                    MonsterImage.Source = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/mosquitoImage.jpg"));
+                    MonsterHealthBar.Maximum = CurrentMonster.HealthCap;
+                    MonsterHealthBar.Value = MonsterHealthBar.Maximum;
+                    CurrentMonster.Health = (int)MonsterHealthBar.Value;
+                    RoamButton.IsEnabled = false;
+                    MonsterImage.Visibility = Visibility.Visible;
+                }
+                else if (encounterValue > 600 && encounterValue <= 800)
+                {
+                    CurrentMonster = new Frog();
+                    MonsterImage.Source = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/frogImage.png"));
+                    MonsterHealthBar.Maximum = CurrentMonster.HealthCap;
+                    MonsterHealthBar.Value = MonsterHealthBar.Maximum;
+                    CurrentMonster.Health = (int)MonsterHealthBar.Value;
+                    RoamButton.IsEnabled = false;
+                    MonsterImage.Visibility = Visibility.Visible;
+                }
+                else if (encounterValue > 800 && encounterValue <= 900)
+                {
+                    CurrentMonster = new Turtle();
+                    MonsterImage.Source = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/snappingTurtleImage.png"));
+                    MonsterHealthBar.Maximum = CurrentMonster.HealthCap;
+                    MonsterHealthBar.Value = MonsterHealthBar.Maximum;
+                    CurrentMonster.Health = (int)MonsterHealthBar.Value;
+                    RoamButton.IsEnabled = false;
+                    MonsterImage.Visibility = Visibility.Visible;
+
+                }
+                else if (encounterValue > 900 && encounterValue <= 980)
+                {
+                    CurrentMonster = new Alligator();
+                    MonsterImage.Source = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/alligatorImage.png"));
+                    MonsterHealthBar.Maximum = CurrentMonster.HealthCap;
+                    MonsterHealthBar.Value = MonsterHealthBar.Maximum;
+                    CurrentMonster.Health = (int)MonsterHealthBar.Value;
+                    RoamButton.IsEnabled = false;
+                    MonsterImage.Visibility = Visibility.Visible;
+
+                }
+                else if (encounterValue > 980)
+                {
+                    CurrentMonster = new MudGhoul();
+                    MonsterImage.Source = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/mudGhoulImage.png"));
+                    MonsterHealthBar.Maximum = CurrentMonster.HealthCap;
+                    MonsterHealthBar.Value = MonsterHealthBar.Maximum;
+                    CurrentMonster.Health = (int)MonsterHealthBar.Value;
+                    RoamButton.IsEnabled = false;
+                    MonsterImage.Visibility = Visibility.Visible;
+                }
+
+                else
+                {
+                    RoamButton.IsEnabled = true;
+                }
+            }
         }
 
         private void CharacterAttackButton_Click(object sender, RoutedEventArgs e)
@@ -153,7 +221,7 @@ namespace MiniRpgGame.UserControls
                 CurrentCharacter.LevelUp();
                 CharacterHealthBar.Maximum = CurrentCharacter.Health;
                 CurrentCharacter.Health = (int)CharacterHealthBar.Maximum;
-                ExpectedBackgroundImage();
+                CurrentMonster = (IMonster)Activator.CreateInstance(originalMonsterType);
                 RoamButton.IsEnabled = true;
 
             }
@@ -233,27 +301,8 @@ namespace MiniRpgGame.UserControls
 
             expectedImage.ImageSource = BackgroundImage.ImageSource;
 
-            if (expectedImage.ImageSource.ToString() == new BitmapImage(new Uri("pack://application:,,,/MiniRpgGame;component/images/forestImage.png")).ToString() )
-            {
-                CurrentMonster = new ForestMonstersAbstract();
-            }
-            else if (expectedImage.ImageSource.ToString() == new BitmapImage(new Uri("pack://application:,,,/MiniRpgGame;component/images/swampsImage.png")).ToString())
-            {
-                CurrentMonster = new SwampsMonsterAbstract();
-            }
-            else if (expectedImage.ImageSource.ToString() == new BitmapImage(new Uri("pack://application:,,,/MiniRpgGame;component/images/mountainImage.png")).ToString())
-            {
-                CurrentMonster = new MountainMonstersAbstract();
-            }
-            else if (expectedImage.ImageSource.ToString() == new BitmapImage(new Uri("pack://application:,,,/MiniRpgGame;component/images/seaImage.png")).ToString())
-            {
-                CurrentMonster = new SeaMonstersAbstract();
-            }
-            else if (expectedImage.ImageSource.ToString() == new BitmapImage(new Uri("pack://application:,,,/MiniRpgGame;component/images/underworldImage.png")).ToString())
-            {
-                CurrentMonster = new UnderworldMonstersAbstract();
-            }
-            else if (expectedImage.ImageSource.ToString() == new BitmapImage(new Uri("pack://application:,,,/MiniRpgGame;component/images/backgroundpic.png")).ToString())
+            
+            if (expectedImage.ImageSource.ToString() == new BitmapImage(new Uri("pack://application:,,,/MiniRpgGame;component/images/backgroundpic.png")).ToString())
             {
                 RoamButton.IsEnabled = false;
                 CharacterAttackButton.IsEnabled = false;
@@ -270,7 +319,7 @@ namespace MiniRpgGame.UserControls
             this.CurrentCharacter = currentCharacter;
             this.CurrentWeapon = currentWeapon;
             this.CurrentMonster = currentMonster;
-            CharacterHealthBar.Maximum = CurrentCharacter.Health;
+            CharacterHealthBar.Maximum = CurrentCharacter.HealthCap;
             CharacterHealthBar.Value = CurrentCharacter.Health;
         }
 
@@ -311,5 +360,17 @@ namespace MiniRpgGame.UserControls
 
             targetTextblock.Visibility = Visibility.Collapsed;
         } 
+
+        public void SavedStats()
+        {
+            if (CurrentMonster != null)
+            {
+                CharacterHealthBar.Value = CurrentCharacter.Health;
+                MonsterHealthBar.Value = CurrentMonster.Health;
+            }
+            
+
+            
+        }
     }
 }

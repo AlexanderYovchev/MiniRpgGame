@@ -10,14 +10,15 @@ namespace MiniRpgGame.Monsters.Swamp_Monsters
     {
         private Random attack = new Random();
 
-        private const int minDmg = 2;
-        private const int maxDmg = 3;
-        private const int xpDrop = 24;
+        private const int minDmg = 3;
+        private const int maxDmg = 5;
+        private const int xpDrop = 20;
         public Mosquito()
         {
             Name = "Mosquito";
 
         }
+        public override int HealthCap { get; set; } = 20;
 
         public override int MinDmg { get => minDmg; }
 

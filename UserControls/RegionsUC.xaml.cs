@@ -57,6 +57,7 @@ namespace MiniRpgGame.UserControls
         {
             this.CurrentImage = new ImageBrush();
             this.CurrentImage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/forestImage.png"));
+            CurrentMonster = new ForestMonstersAbstract();
 
             Content = new MainMenuUC(CurrentCharacter, CurrentWeapon, CurrentMonster, CurrentImage);
         }
@@ -65,6 +66,7 @@ namespace MiniRpgGame.UserControls
         {
             this.CurrentImage = new ImageBrush();
             this.CurrentImage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/swampsImage.png"));
+            CurrentMonster = new SwampsMonsterAbstract();
 
             Content = new MainMenuUC(CurrentCharacter, CurrentWeapon, CurrentMonster, CurrentImage);
         }
@@ -73,6 +75,7 @@ namespace MiniRpgGame.UserControls
         {
             this.CurrentImage = new ImageBrush();
             this.CurrentImage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/mountainImage.png"));
+            CurrentMonster = new MountainMonstersAbstract();
 
             Content = new MainMenuUC(CurrentCharacter, CurrentWeapon, CurrentMonster, CurrentImage);
         }
@@ -81,6 +84,7 @@ namespace MiniRpgGame.UserControls
         {
             this.CurrentImage = new ImageBrush();
             this.CurrentImage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/seaImage.png"));
+            CurrentMonster = new SeaMonstersAbstract();
 
             Content = new MainMenuUC(CurrentCharacter, CurrentWeapon, CurrentMonster, CurrentImage);
         }
@@ -89,6 +93,7 @@ namespace MiniRpgGame.UserControls
         {
             this.CurrentImage = new ImageBrush();
             this.CurrentImage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/underworldImage.png"));
+            CurrentMonster = new UnderworldMonstersAbstract();
 
             Content = new MainMenuUC(CurrentCharacter, CurrentWeapon, CurrentMonster, CurrentImage);
         }

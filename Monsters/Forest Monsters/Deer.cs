@@ -16,8 +16,11 @@ namespace MiniRpgGame.Monsters.Forest_Monsters
         public Deer()
         {
             Name = "Deer";
+            
 
         }
+
+        public override int HealthCap { get; set; } = 100;
 
         public override int MinDmg { get => minDmg; }
 

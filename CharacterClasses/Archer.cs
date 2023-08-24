@@ -8,6 +8,7 @@ namespace MiniRpgGame.CharacterClasses
 {
     public class Archer : CharacterAbstractClass
     {
+        public override int HealthCap { get; set; } = 110;
         public override int Health { get; set; } = 110;
 
         public override void LevelUp()
@@ -15,7 +16,8 @@ namespace MiniRpgGame.CharacterClasses
             Level++;
             XpCap += 400;
             Xp = XpCap - Xp;
-            Health += 25;
+            HealthCap += 25;
+            Health = HealthCap;
             this.Weapon.MinDmg += 3;
             this.Weapon.MaxDmg += 3;
 

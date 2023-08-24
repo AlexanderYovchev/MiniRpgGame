@@ -9,6 +9,8 @@ namespace MiniRpgGame.Monsters
     public interface IMonster
     {
         public string Name { get; set; }
+
+        public int HealthCap { get; set; }
         public int Health { get; set; }
 
         public int AttackDmg { get; set; }

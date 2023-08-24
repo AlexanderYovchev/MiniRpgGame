@@ -10,6 +10,7 @@ namespace MiniRpgGame.CharacterClasses
 {
     public class Warrior : CharacterAbstractClass
     {
+        public override int HealthCap { get; set; } = 200;
         public override int Health { get; set; } = 200;
 
         public override void LevelUp()
@@ -17,7 +18,8 @@ namespace MiniRpgGame.CharacterClasses
             Level++;
             XpCap += 400;
             Xp = XpCap - Xp;
-            Health += 50;
+            HealthCap += 50;
+            Health = HealthCap;
             this.Weapon.MinDmg += 2;
             this.Weapon.MaxDmg += 2;
         }

@@ -13,6 +13,8 @@ namespace MiniRpgGame.Monsters
 
 
         public string Name { get; set; }
+
+        public virtual int HealthCap { get; set; }
         public virtual int Health { get; set; }
 
         public virtual int MinDmg { get; set; }

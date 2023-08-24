@@ -16,6 +16,8 @@ namespace MiniRpgGame.CharacterClasses
 
         }
         public virtual string Name { get; set; }
+
+        public virtual int HealthCap { get; set; }
         public virtual int Health { get ; set; }
         public virtual int Mana { get; set; }
         public virtual IWeapon Weapon { get; set; }

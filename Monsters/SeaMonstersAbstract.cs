@@ -17,6 +17,8 @@ namespace MiniRpgGame.Monsters
         }
 
         public string Name { get; set; }
+
+        public override int HealthCap { get; set; }
         public override int Health { get; set; }
 
         public override int MinDmg { get; set; }

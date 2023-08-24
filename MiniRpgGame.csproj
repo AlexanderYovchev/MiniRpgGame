@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\alligatorImage.png" />
     <None Remove="images\archerImage.jpg" />
     <None Remove="images\backgroundpic.png" />
     <None Remove="images\crossedSwords.png" />
@@ -21,6 +22,7 @@
     <None Remove="images\mountainGoatImage.png" />
     <None Remove="images\mountainImage.png" />
     <None Remove="images\mountainLionImage.png" />
+    <None Remove="images\mudGhoulImage.png" />
     <None Remove="images\rabbitImage.png" />
     <None Remove="images\ratImage.png" />
     <None Remove="images\seaImage.png" />
@@ -34,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\alligatorImage.png" />
     <Resource Include="images\archerImage.jpg" />
     <Resource Include="images\backgroundpic.png" />
     <Resource Include="images\crossedSwords.png" />
@@ -47,6 +50,7 @@
     <Resource Include="images\mountainGoatImage.png" />
     <Resource Include="images\mountainImage.png" />
     <Resource Include="images\mountainLionImage.png" />
+    <Resource Include="images\mudGhoulImage.png" />
     <Resource Include="images\rabbitImage.png" />
     <Resource Include="images\ratImage.png" />
     <Resource Include="images\seaImage.png" />

@@ -11,6 +11,8 @@ namespace MiniRpgGame.CharacterClasses.CharacterClassInterface
     public interface ICharacterClasses
     {
         public string Name { get; set; }
+
+        public int HealthCap { get; set; }
         public int Health { get; set; }
 
         public int Mana { get; set; }
