@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace MiniRpgGame.Monsters
 {
@@ -14,6 +15,8 @@ namespace MiniRpgGame.Monsters
         public int Health { get; set; }
 
         public int AttackDmg { get; set; }
+
+        public ImageSource MonsterImage { get; set; }
 
         public Random RandomCritGenerator { get; set; }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace MiniRpgGame.Monsters
 {
@@ -25,6 +26,8 @@ namespace MiniRpgGame.Monsters
 
         public override int MaxDmg { get; set; }
         public override int AttackDmg => attack.Next(MinDmg,MaxDmg);
+
+        public override ImageSource MonsterImage { get; set; }
 
         public override Random RandomCritGenerator { get; set; } = new Random();
         public override int CritChance { get; set; }

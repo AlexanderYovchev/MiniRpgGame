@@ -19,12 +19,15 @@
     <None Remove="images\impImage.png" />
     <None Remove="images\mageImage.jpg" />
     <None Remove="images\mosquitoImage.jpg" />
+    <None Remove="images\mountainDragon.png" />
+    <None Remove="images\mountainEagleImage.png" />
     <None Remove="images\mountainGoatImage.png" />
     <None Remove="images\mountainImage.png" />
     <None Remove="images\mountainLionImage.png" />
     <None Remove="images\mudGhoulImage.png" />
     <None Remove="images\rabbitImage.png" />
     <None Remove="images\ratImage.png" />
+    <None Remove="images\rockGolemImage.png" />
     <None Remove="images\seaImage.png" />
     <None Remove="images\skeletonWarriorImage.png" />
     <None Remove="images\snappingTurtleImage.png" />
@@ -47,12 +50,15 @@
     <Resource Include="images\impImage.png" />
     <Resource Include="images\mageImage.jpg" />
     <Resource Include="images\mosquitoImage.jpg" />
+    <Resource Include="images\mountainDragon.png" />
+    <Resource Include="images\mountainEagleImage.png" />
     <Resource Include="images\mountainGoatImage.png" />
     <Resource Include="images\mountainImage.png" />
     <Resource Include="images\mountainLionImage.png" />
     <Resource Include="images\mudGhoulImage.png" />
     <Resource Include="images\rabbitImage.png" />
     <Resource Include="images\ratImage.png" />
+    <Resource Include="images\rockGolemImage.png" />
     <Resource Include="images\seaImage.png" />
     <Resource Include="images\skeletonWarriorImage.png" />
     <Resource Include="images\snappingTurtleImage.png" />
@@ -64,7 +70,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Monsters\Mountain Monsters\" />
     <Folder Include="Monsters\Sea Monsters\" />
     <Folder Include="Monsters\Underworld Monsters\" />
   </ItemGroup>

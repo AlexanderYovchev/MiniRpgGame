@@ -6,21 +6,23 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace MiniRpgGame.Monsters.Swamp_Monsters
+namespace MiniRpgGame.Monsters.Mountain_Monsters
 {
-    public class MudGhoul : SwampsMonsterAbstract
+    public class MountainDragon : MountainMonstersAbstract
     {
         private Random attack = new Random();
 
-        private const int minDmg = 12;
-        private const int maxDmg = 16;
-        private const int xpDrop = 400;
-        public MudGhoul()
+        private const int minDmg = 20;
+        private const int maxDmg = 30;
+        private const int xpDrop = 4000;
+        public MountainDragon()
         {
-            Name = "Mud Ghoul";
+            Name = "Mountain Dragon";
+
 
         }
-        public override int HealthCap { get; set; } = 180;
+
+        public override int HealthCap { get; set; } = 1500;
 
         public override int MinDmg { get => minDmg; }
 
@@ -28,7 +30,7 @@ namespace MiniRpgGame.Monsters.Swamp_Monsters
 
         public override int AttackDmg => attack.Next(minDmg, maxDmg);
 
-        public override ImageSource MonsterImage { get; set; } = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/mudGhoulImage.png"));
+        public override ImageSource MonsterImage { get; set; } = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/mountainDragon.png"));
 
         public override int XpDrop { get => xpDrop; }
 

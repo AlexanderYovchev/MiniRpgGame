@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace MiniRpgGame.Monsters.Swamp_Monsters
 {
@@ -25,6 +27,8 @@ namespace MiniRpgGame.Monsters.Swamp_Monsters
         public override int MaxDmg { get => maxDmg; }
 
         public override int AttackDmg => attack.Next(minDmg, maxDmg);
+
+        public override ImageSource MonsterImage { get; set; } = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/frogImage.png"));
 
         public override int XpDrop { get => xpDrop; }
 
