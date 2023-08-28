@@ -13,6 +13,8 @@ namespace MiniRpgGame.Weapons.ArcherWeapon
         public virtual int MinDmg { get; set; }
 
         public virtual int MaxDmg { get; set; }
+
+        public virtual int LevelRequirement { get; set; }
         public virtual int AttackDamage { get; set; }
 
         public virtual Random CritChance { get; set; } = new Random();

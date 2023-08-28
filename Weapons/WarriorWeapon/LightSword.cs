@@ -16,6 +16,8 @@ namespace MiniRpgGame.Weapons.WarriorWeapon
         public override int MinDmg { get; set; } = minDmg;
         public override int MaxDmg { get; set; } = maxDmg;
 
+        public override int LevelRequirement { get; set; } = 5;
+
         public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);
 
         public override Random CritChance { get; set; } = new Random();

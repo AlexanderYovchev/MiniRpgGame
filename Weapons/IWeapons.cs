@@ -10,9 +10,12 @@ namespace MiniRpgGame.Weapons
     {
         public string Name { get; set; }
 
+
         public int MinDmg { get; set; }
 
         public int MaxDmg { get; set; }
+
+        public int LevelRequirement { get; set; }
 
         public int AttackDamage { get; }
 

@@ -4,6 +4,8 @@ using MiniRpgGame.Monsters.Forest_Monsters;
 using MiniRpgGame.Monsters.Mountain_Monsters;
 using MiniRpgGame.Monsters.Swamp_Monsters;
 using MiniRpgGame.Weapons;
+using MiniRpgGame.Weapons.WarriorWeapon;
+using MiniRpgGame.WeaponsLists;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +38,8 @@ namespace MiniRpgGame.UserControls
         private BackgroundWorker worker;
         public ICharacterClasses CurrentCharacter { get; set; }
         public IWeapon CurrentWeapon { get; set; }
+
+        public WeaponsRepository ShopRepository { get; set; }
         public IMonster CurrentMonster { get; set; }
 
         public ImageBrush CurrentImage { get; set; }
@@ -51,8 +55,10 @@ namespace MiniRpgGame.UserControls
 
             ExpectedBackgroundImage();
 
-            
-
+            ShopRepository = new WarriorWeaponsRepository();
+            ShopRepository.PopulateList();
+            CurrentWeapon = ShopRepository.FindWeapon("Katana");
+            CurrentCharacter.Weapon = CurrentWeapon;
 
             if (CurrentMonster != null)
             {

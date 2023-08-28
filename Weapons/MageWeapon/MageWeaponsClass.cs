@@ -14,6 +14,8 @@ namespace MiniRpgGame.Weapons.MageWeapon
 
         public virtual int MaxDmg { get; set; }
 
+        public virtual int LevelRequirement { get; set; }
+
         public virtual int AttackDamage { get; set; }
 
         public virtual Random CritChance { get; set; }
