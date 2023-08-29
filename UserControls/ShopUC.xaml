@@ -15,6 +15,8 @@
             <RowDefinition Height="90"/>
             <RowDefinition Height="200"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -52,7 +54,19 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <ComboBox x:Name="ShopBox" Background="Yellow"  FontSize="30" Height="40" Width="Auto"/>
+            <ComboBox x:Name="ShopBox"  Background="Yellow" SelectionChanged="ShopBox_SelectionChanged" FontSize="30" Height="40" Width="400"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <TextBlock x:Name="PickedWeaponInfo" FontSize="40" Foreground="Red" FontWeight="Heavy" TextWrapping="Wrap" Background="LightYellow" Height="300"/>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Button x:Name="BuyButton" Click="BuyButton_Click" Content="Buy" FontSize="50" FontWeight="Bold" Background="Green" Foreground="Azure" Height="150" Width="200"/>
+        </Grid>
+
+        <Grid Grid.Row="4">
+            <TextBlock x:Name="BuyRestriction"  FontSize="40" TextAlignment="Center" TextWrapping="Wrap" Background="LightYellow" Text=""/>
         </Grid>
     </Grid>
 

@@ -65,8 +65,9 @@ namespace MiniRpgGame.UserControls
                 ShopBox.Items.Add(weapon);
                 
             }
-
+            
             ShopBox.DisplayMemberPath = "Name";
+            
 
         }
 
@@ -79,6 +80,38 @@ namespace MiniRpgGame.UserControls
                 mainWindow.Content = new MainMenuUC(CurrentCharacter, CurrentWeapon, CurrentMonster, CurrentImage);
 
             }
+        }
+
+        public bool RequirementCheck()
+        {
+            var pickedWeapon = ShopRepository.WeaponsList.FirstOrDefault(w => w.Name == ShopBox.SelectedItem);
+
+            if (pickedWeapon.LevelRequirement > CurrentCharacter.Level)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        
+        
+        private void BuyButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShopBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ShopBox.SelectedItem == null)
+            {
+
+            }
+            else
+            {
+                var pickedWeapon = (IWeapon)ShopBox.SelectedItem;
+                PickedWeaponInfo.Text = $"Minimum damage: {pickedWeapon.MinDmg}\nMaximum damage: {pickedWeapon.MaxDmg}\nLevel requirement: {pickedWeapon.LevelRequirement} Level";
+            }
+            
         }
     }
 }
