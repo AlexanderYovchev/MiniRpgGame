@@ -1,5 +1,5 @@
 ﻿using MiniRpgGame.Weapons;
-using MiniRpgGame.Weapons.WarriorWeapon;
+using MiniRpgGame.Weapons.MageWeapon;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,32 +9,25 @@ using System.Threading.Tasks;
 
 namespace MiniRpgGame.WeaponsLists
 {
-    public class WarriorWeaponsRepository : WeaponsRepository
+    public class MageWeaponsRepository : WeaponsRepository
     {
-
-        public WarriorWeaponsRepository()
-        {
-            
-        }
-
-
-        
 
         public bool MeetsRequirements(IWeapon weapon, int charLevel)
         {
             return base.MeetsRequirements(weapon, charLevel);
         }
 
+
         public override void PopulateList()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
 
             var weaponTypes = assembly.GetTypes()
-            .Where(type => typeof(WarriorWeaponsClass).IsAssignableFrom(type) && !type.IsAbstract);
+            .Where(type => typeof(MageWeaponsClass).IsAssignableFrom(type) && !type.IsAbstract);
 
             foreach (var weaponType in weaponTypes)
             {
-                WarriorWeaponsClass weapon = (WarriorWeaponsClass)Activator.CreateInstance(weaponType);
+                MageWeaponsClass weapon = (MageWeaponsClass)Activator.CreateInstance(weaponType);
                 WeaponsList.Add(weapon);
             }
 

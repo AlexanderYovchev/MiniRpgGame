@@ -9,7 +9,7 @@ namespace MiniRpgGame.WeaponsLists
 {
     public abstract class WeaponsRepository
     {
-        public virtual List<Type> WeaponsList { get; } = new List<Type>();
+        public virtual List<IWeapon> WeaponsList { get; set; } = new List<IWeapon>();
 
         public virtual IWeapon FindWeapon(string weapon)
         {

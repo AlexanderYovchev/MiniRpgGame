@@ -55,10 +55,7 @@ namespace MiniRpgGame.UserControls
 
             ExpectedBackgroundImage();
 
-            ShopRepository = new WarriorWeaponsRepository();
-            ShopRepository.PopulateList();
-            CurrentWeapon = ShopRepository.FindWeapon("Katana");
-            CurrentCharacter.Weapon = CurrentWeapon;
+            
 
             if (CurrentMonster != null)
             {
@@ -396,6 +393,11 @@ namespace MiniRpgGame.UserControls
             CurrentMonster.Health = (int)MonsterHealthBar.Value;
             RoamButton.IsEnabled = false;
             MonsterImage.Visibility = Visibility.Visible;
+        }
+
+        private void ShopButton_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new ShopUC(CurrentCharacter, CurrentWeapon, CurrentMonster, CurrentImage);
         }
     }
 }

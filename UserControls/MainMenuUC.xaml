@@ -50,7 +50,7 @@
 
                 <Button Content="Character" x:Name="CharacterInfoButton" Click="CharacterInfoButton_Click"/>
                 <Button Content="Regions" x:Name="RegionsButton" Click="RegionsButton_Click"/>
-                <Button Content="Shop" x:Name="ShopButton"/>
+                <Button Content="Shop" x:Name="ShopButton" Click="ShopButton_Click"/>
             </StackPanel>
         </Grid>
 
