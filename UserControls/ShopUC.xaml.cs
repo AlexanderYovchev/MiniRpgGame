@@ -97,7 +97,17 @@ namespace MiniRpgGame.UserControls
         
         private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var pickedWeapon = (IWeapon)ShopBox.SelectedItem;
+            if (ShopRepository.MeetsRequirements(pickedWeapon, CurrentCharacter.Level) == false)
+            {
+                BuyRestriction.Text = "Character level too low to buy this weapon!";
+            }
+            else
+            {
+                CurrentWeapon = pickedWeapon;
+                CurrentCharacter.Weapon = pickedWeapon;
+                BuyRestriction.Text = $"Successfully bought {pickedWeapon.Name}";
+            }
         }
 
         private void ShopBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

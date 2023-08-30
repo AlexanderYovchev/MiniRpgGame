@@ -2,7 +2,9 @@
 using MiniRpgGame.Monsters;
 using MiniRpgGame.Monsters.Forest_Monsters;
 using MiniRpgGame.Monsters.Mountain_Monsters;
+using MiniRpgGame.Monsters.Sea_Monsters;
 using MiniRpgGame.Monsters.Swamp_Monsters;
+using MiniRpgGame.Monsters.Underworld_Monsters;
 using MiniRpgGame.Weapons;
 using MiniRpgGame.Weapons.WarriorWeapon;
 using MiniRpgGame.WeaponsLists;
@@ -54,9 +56,12 @@ namespace MiniRpgGame.UserControls
             SavedStats();
 
             ExpectedBackgroundImage();
-
             
 
+            if (CurrentMonster == null || originalMonsterType != null && originalMonsterType.IsAbstract == true)
+            {
+                CharacterAttackButton.IsEnabled = false;
+            }
             if (CurrentMonster != null)
             {
                 MonsterHealthBar.Value = CurrentMonster.Health;
@@ -66,7 +71,7 @@ namespace MiniRpgGame.UserControls
             {
                 RegionsButton.IsEnabled = false;
             }
-            else if (MonsterHealthBar.Value == 0)
+            else if (MonsterHealthBar.Value <= 0)
             {
                 RegionsButton.IsEnabled = true;
             }
@@ -209,12 +214,87 @@ namespace MiniRpgGame.UserControls
                     RoamButton.IsEnabled = true;
                 }
             }
+
+            else if (CurrentMonster.GetType().Name == "SeaMonstersAbstract")
+            {
+                if (encounterValue > 300 && encounterValue <= 600)
+                {
+                    CurrentMonster = new Jellyfish();
+                    MonsterFoundLogic();
+                }
+                else if (encounterValue > 600 && encounterValue <= 800)
+                {
+                    CurrentMonster = new Stingray();
+                    MonsterFoundLogic();
+                }
+                else if (encounterValue > 800 && encounterValue <= 900)
+                {
+                    CurrentMonster = new Shark();
+                    MonsterFoundLogic();
+
+                }
+                else if (encounterValue > 900 && encounterValue <= 990)
+                {
+                    CurrentMonster = new Whale();
+                    MonsterFoundLogic();
+
+                }
+                else if (encounterValue > 990)
+                {
+                    CurrentMonster = new Kraken();
+                    MonsterFoundLogic();
+                }
+
+                else
+                {
+                    RoamButton.IsEnabled = true;
+                }
+
+                
+            }
+
+            else if (CurrentMonster.GetType().Name == "UnderworldMonstersAbstract")
+            {
+                if (encounterValue > 300 && encounterValue <= 600)
+                {
+                    CurrentMonster = new SkeletonWarrior();
+                    MonsterFoundLogic();
+                }
+                else if (encounterValue > 600 && encounterValue <= 800)
+                {
+                    CurrentMonster = new Imp();
+                    MonsterFoundLogic();
+                }
+                else if (encounterValue > 800 && encounterValue <= 900)
+                {
+                    CurrentMonster = new WolfPack();
+                    MonsterFoundLogic();
+
+                }
+                else if (encounterValue > 900 && encounterValue <= 990)
+                {
+                    CurrentMonster = new HorsemanOfDeath();
+                    MonsterFoundLogic();
+
+                }
+                else if (encounterValue > 990)
+                {
+                    CurrentMonster = new Hades();
+                    MonsterFoundLogic();
+                }
+
+                else
+                {
+                    RoamButton.IsEnabled = true;
+                }
+            }
         }
 
         private void CharacterAttackButton_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentMonster.Health <= 0)
             {
+                CharacterAttackButton.IsEnabled = false;
                 MonsterImage.Visibility = Visibility.Collapsed;
                 CharacterHealthBar.Value = CharacterHealthBar.Maximum;
                 CurrentCharacter.LevelUp();
@@ -222,7 +302,7 @@ namespace MiniRpgGame.UserControls
                 CurrentCharacter.Health = (int)CharacterHealthBar.Maximum;
                 CurrentMonster = (IMonster)Activator.CreateInstance(originalMonsterType);
                 RoamButton.IsEnabled = true;
-                CharacterAttackButton.IsEnabled = false;
+                
 
             }
             else
@@ -330,6 +410,7 @@ namespace MiniRpgGame.UserControls
             if (CurrentMonster != null)
             {
                 MonsterImage.Source = CurrentMonster.MonsterImage;
+                originalMonsterType = CurrentMonster.GetType();
             }
         }
 

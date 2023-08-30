@@ -16,7 +16,10 @@
     <None Remove="images\forestImage.png" />
     <None Remove="images\frogImage.png" />
     <None Remove="images\hadesImage.png" />
+    <None Remove="images\horsemanImage.png" />
     <None Remove="images\impImage.png" />
+    <None Remove="images\jellyfishImage.png" />
+    <None Remove="images\krakenImage.png" />
     <None Remove="images\mageImage.jpg" />
     <None Remove="images\mosquitoImage.jpg" />
     <None Remove="images\mountainDragon.png" />
@@ -29,12 +32,15 @@
     <None Remove="images\ratImage.png" />
     <None Remove="images\rockGolemImage.png" />
     <None Remove="images\seaImage.png" />
+    <None Remove="images\sharkImage.png" />
     <None Remove="images\skeletonWarriorImage.png" />
     <None Remove="images\snappingTurtleImage.png" />
     <None Remove="images\squirrelImage.png" />
+    <None Remove="images\stingrayImage.png" />
     <None Remove="images\swampsImage.png" />
     <None Remove="images\underworldImage.png" />
     <None Remove="images\warriorImage.jpg" />
+    <None Remove="images\whaleImage.png" />
     <None Remove="images\wolfPackImage.png" />
   </ItemGroup>
 
@@ -47,7 +53,10 @@
     <Resource Include="images\forestImage.png" />
     <Resource Include="images\frogImage.png" />
     <Resource Include="images\hadesImage.png" />
+    <Resource Include="images\horsemanImage.png" />
     <Resource Include="images\impImage.png" />
+    <Resource Include="images\jellyfishImage.png" />
+    <Resource Include="images\krakenImage.png" />
     <Resource Include="images\mageImage.jpg" />
     <Resource Include="images\mosquitoImage.jpg" />
     <Resource Include="images\mountainDragon.png" />
@@ -60,18 +69,16 @@
     <Resource Include="images\ratImage.png" />
     <Resource Include="images\rockGolemImage.png" />
     <Resource Include="images\seaImage.png" />
+    <Resource Include="images\sharkImage.png" />
     <Resource Include="images\skeletonWarriorImage.png" />
     <Resource Include="images\snappingTurtleImage.png" />
     <Resource Include="images\squirrelImage.png" />
+    <Resource Include="images\stingrayImage.png" />
     <Resource Include="images\swampsImage.png" />
     <Resource Include="images\underworldImage.png" />
     <Resource Include="images\warriorImage.jpg" />
+    <Resource Include="images\whaleImage.png" />
     <Resource Include="images\wolfPackImage.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Monsters\Sea Monsters\" />
-    <Folder Include="Monsters\Underworld Monsters\" />
   </ItemGroup>
 
 </Project>
