@@ -8,35 +8,21 @@ namespace MiniRpgGame.Weapons.ArcherWeapon.ArcherStarterWeapons
 {
     public class SimpleBow : ArcherStarterWeaponClass
     {
-        private Random attackDamage = new Random();
+        private const int critChanceSuccessValue = 95;
         private const int minDmg = 5;
         private const int maxDmg = 9;
+        private const int levelRequirement = 0;
 
         public SimpleBow()
         {
-
+            Name = "Simple Bow";
+            MaxDmg = maxDmg;
+            MinDmg = minDmg;
+            LevelRequirement = levelRequirement;
+            CritChanceSuccessValue = critChanceSuccessValue;
+            AttackInitialize();
         }
 
-        public override string Name { get; set; } = "Simple Bow";
-
-        public override int MinDmg { get; set; } = minDmg;
-
-        public override int MaxDmg { get; set; } = maxDmg;
-
-        public override Random CritChance { get; set; } = new Random();
-
-
-        public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);
-
-        public override int AttackInitialize()
-        {
-            if (CritChance.Next(1, 100) >= 95)
-            {
-                return AttackDamage * 2;
-            }
-
-            return AttackDamage;
-        }
 
         public override string WeaponInfo()
         {

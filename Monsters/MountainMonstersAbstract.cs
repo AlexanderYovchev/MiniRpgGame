@@ -8,27 +8,10 @@ namespace MiniRpgGame.Monsters
 {
     public class MountainMonstersAbstract : MonsterAbstractClass
     {
-        private Random attack = new Random();
-
-
         public MountainMonstersAbstract()
         {
 
         }
-
-        public string Name { get; set; }
-
-        public override int HealthCap { get; set; }
-        public override int Health { get; set; }
-
-        public override int MinDmg { get; set; }
-
-        public override int MaxDmg { get; set; }
-        public override int AttackDmg => attack.Next(MinDmg, MaxDmg);
-
-        public override Random RandomCritGenerator { get; set; } = new Random();
-        public override int CritChance { get; set; }
-        public override int XpDrop { get; }
 
         public override int MonsterAttack()
         {

@@ -8,36 +8,20 @@ namespace MiniRpgGame.Weapons.MageWeapon.MageStarterWeapons
 {
     public class StupidWand : MageStartedWeaponClass
     {
-        private Random attackDamage = new Random();
+        private const int critChanceSuccessValue = 1;
         private const int minDmg = 2;
         private const int maxDmg = 3;
+        private const int levelRequirement = 0;
 
         public StupidWand()
         {
-
+            Name = "Stupid Wand";
+            MaxDmg = maxDmg;
+            MinDmg = minDmg;
+            LevelRequirement = levelRequirement;
+            CritChanceSuccessValue = critChanceSuccessValue;
+            AttackInitialize();
         }
-
-        public override string Name { get; set; } = "Stupid Wand";
-
-        public override int MinDmg { get; set; } = minDmg;
-
-        public override int MaxDmg { get; set; } = maxDmg;
-
-        public override Random CritChance { get; set; } = new Random();
-
-
-        public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);
-
-        public override int AttackInitialize()
-        {
-            if (CritChance.Next(1, 100) >= 1)
-            {
-                return AttackDamage * 2;
-            }
-
-            return AttackDamage;
-        }
-
         public override string WeaponInfo()
         {
             StringBuilder sb = new StringBuilder();

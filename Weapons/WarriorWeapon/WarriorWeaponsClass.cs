@@ -16,12 +16,19 @@ namespace MiniRpgGame.Weapons.WarriorWeapon
 
         public virtual int LevelRequirement { get; set; }
 
-        public virtual int AttackDamage { get; set; }
+        public virtual int AttackDamage => Random.Shared.Next(MinDmg, MaxDmg);
 
         public virtual Random CritChance { get; set; } = new Random();
 
+        public virtual int CritChanceSuccessValue { get; set; }
+
         public virtual int AttackInitialize()
         {
+            if (CritChance.Next(1, 100) >= CritChanceSuccessValue)
+            {
+                return AttackDamage * 2;
+            }
+
             return AttackDamage;
         }
 

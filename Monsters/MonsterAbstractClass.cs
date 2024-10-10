@@ -9,6 +9,7 @@ namespace MiniRpgGame.Monsters
 {
     public abstract class MonsterAbstractClass : IMonster
     {
+        
         private Random attack = new Random();
 
 
@@ -28,7 +29,7 @@ namespace MiniRpgGame.Monsters
 
         public virtual Random RandomCritGenerator { get; set; } = new Random();
         public virtual int CritChance { get; set; }
-        public virtual int XpDrop { get; }
+        public virtual int XpDrop { get; set; }
 
         public virtual int MonsterAttack()
         {

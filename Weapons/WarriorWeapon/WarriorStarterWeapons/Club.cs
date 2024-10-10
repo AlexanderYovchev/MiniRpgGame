@@ -9,36 +9,20 @@ namespace MiniRpgGame.Weapons.WarriorWeapons
 {
     public class Club : WarriorStartedWeapon
     {
-        private Random attackDamage = new Random();
+        private const int critChanceSuccessValue = 70;
         private const int minDmg = 3;
         private const int maxDmg = 9;
+        private const int levelRequirement = 0;
 
         public Club()
         {
-
+            Name = "Club";
+            MaxDmg = maxDmg;
+            MinDmg = minDmg;
+            LevelRequirement = levelRequirement;
+            CritChanceSuccessValue = critChanceSuccessValue;
+            AttackInitialize();
         }
-
-        public override string Name { get; set; } = "Club";
-
-        public override int MinDmg { get; set; } = minDmg;
-
-        public override int MaxDmg { get; set; } = maxDmg;
-
-        public override Random CritChance { get; set; } = new Random();
-
-
-        public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);
-
-        public override int AttackInitialize()
-        {
-            if (CritChance.Next(1, 100) >= 70)
-            {
-                return AttackDamage * 2;
-            }
-
-            return AttackDamage;
-        }
-
         public override string WeaponInfo()
         {
             StringBuilder sb = new StringBuilder();

@@ -8,38 +8,21 @@ namespace MiniRpgGame.Weapons.ArcherWeapon
 {
     public class WoodenJavelin : ArcherWeaponsClass
     {
+        private const int critChanceSuccessValue = 50;
         private Random attackDamage = new Random();
         private const int minDmg = 9;
         private const int maxDmg = 15;
+        private const int levelRequirement = 8;
 
         public WoodenJavelin()
         {
-
+            Name = "Wooden Javelin";
+            MaxDmg = maxDmg;
+            MinDmg = minDmg;
+            LevelRequirement = levelRequirement;
+            CritChanceSuccessValue = critChanceSuccessValue;
+            AttackInitialize();
         }
-
-        public override string Name { get; set; } = "Wooden Javelin";
-
-        public override int MinDmg { get; set; } = minDmg;
-
-        public override int MaxDmg { get; set; } = maxDmg;
-
-        public override Random CritChance { get; set; } = new Random();
-
-        public override int LevelRequirement { get; set; } = 8;
-
-
-        public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);
-
-        public override int AttackInitialize()
-        {
-            if (CritChance.Next(1, 100) >= 50)
-            {
-                return AttackDamage * 2;
-            }
-
-            return AttackDamage;
-        }
-
         public override string WeaponInfo()
         {
             StringBuilder sb = new StringBuilder();

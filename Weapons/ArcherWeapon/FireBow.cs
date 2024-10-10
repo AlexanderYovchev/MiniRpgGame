@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,37 +9,22 @@ namespace MiniRpgGame.Weapons.ArcherWeapon
 {
     public class FireBow : ArcherWeaponsClass
     {
-        private Random attackDamage = new Random();
+        private const int critChanceSuccessValue = 10;
         private const int minDmg = 30;
         private const int maxDmg = 50;
+        private const int levelRequirement = 20;
 
         public FireBow()
         {
-
+            Name = "FireBow";
+            MaxDmg = maxDmg;
+            MinDmg = minDmg;
+            LevelRequirement = levelRequirement;
+            CritChanceSuccessValue = critChanceSuccessValue;
+            AttackInitialize();
         }
 
-        public override string Name { get; set; } = "Fire Bow";
-
-        public override int MinDmg { get; set; } = minDmg;
-
-        public override int MaxDmg { get; set; } = maxDmg;
-
-        public override Random CritChance { get; set; } = new Random();
-
-        public override int LevelRequirement { get; set; } = 20;
-
-
-        public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);
-
-        public override int AttackInitialize()
-        {
-            if (CritChance.Next(1, 100) >= 10)
-            {
-                return AttackDamage * 2;
-            }
-
-            return AttackDamage;
-        }
+        public override int AttackDamage => base.AttackDamage;
 
         public override string WeaponInfo()
         {

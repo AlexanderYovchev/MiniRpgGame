@@ -12,28 +12,21 @@ namespace MiniRpgGame.Monsters.Sea_Monsters
     {
         private Random attack = new Random();
 
+        private int healthCap = 20000;
         private const int minDmg = 80;
         private const int maxDmg = 240;
         private const int xpDrop = 20000;
         public Kraken()
         {
             Name = "Kraken";
+            HealthCap = healthCap;
+            MinDmg = minDmg;
+            MaxDmg = maxDmg;
+            XpDrop = xpDrop;
+            AttackDmg = attack.Next(MinDmg, MaxDmg);
 
 
         }
-
-        public override int HealthCap { get; set; } = 20000;
-
-        public override int MinDmg { get => minDmg; }
-
-        public override int MaxDmg { get => maxDmg; }
-
-        public override int AttackDmg => attack.Next(minDmg, maxDmg);
-
         public override ImageSource MonsterImage { get; set; } = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/krakenImage.png"));
-
-        public override int XpDrop { get => xpDrop; }
-
-        public override int CritChance { get => base.CritChance; set => base.CritChance = value; }
     }
 }

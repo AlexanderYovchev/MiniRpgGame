@@ -8,36 +8,19 @@ namespace MiniRpgGame.Weapons.ArcherWeapon
 {
     public class LongBow : ArcherWeaponsClass
     {
-        private Random attackDamage = new Random();
+        private const int critChanceSuccessValue = 25;
         private const int minDmg = 15;
         private const int maxDmg = 25;
+        private const int levelRequirement = 12;
 
         public LongBow()
         {
-
-        }
-
-        public override string Name { get; set; } = "Long Bow";
-
-        public override int MinDmg { get; set; } = minDmg;
-
-        public override int MaxDmg { get; set; } = maxDmg;
-
-        public override Random CritChance { get; set; } = new Random();
-
-        public override int LevelRequirement { get; set; } = 12;
-
-
-        public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);
-
-        public override int AttackInitialize()
-        {
-            if (CritChance.Next(1, 100) >= 25)
-            {
-                return AttackDamage * 2;
-            }
-
-            return AttackDamage;
+            Name = "Long Bow";
+            MaxDmg = maxDmg;
+            MinDmg = minDmg;
+            LevelRequirement = levelRequirement;
+            CritChanceSuccessValue = critChanceSuccessValue;
+            AttackInitialize();
         }
 
         public override string WeaponInfo()

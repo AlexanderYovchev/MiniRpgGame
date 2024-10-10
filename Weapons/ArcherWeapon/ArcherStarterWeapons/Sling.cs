@@ -8,34 +8,19 @@ namespace MiniRpgGame.Weapons.ArcherWeapon.ArcherStarterWeapons
 {
     public class Sling : ArcherStarterWeaponClass
     {
-        private Random attackDamage = new Random();
+        private const int critChanceSuccessValue = 40;
         private const int minDmg = 2;
         private const int maxDmg = 6;
+        private const int levelRequirement = 0;
 
         public Sling()
         {
-
-        }
-
-        public override string Name { get; set; } = "Sling";
-
-        public override int MinDmg { get; set; } = minDmg;
-
-        public override int MaxDmg { get; set; } = maxDmg;
-
-        public override Random CritChance { get; set; } = new Random();
-
-
-        public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);
-
-        public override int AttackInitialize()
-        {
-            if (CritChance.Next(1, 100) >= 40)
-            {
-                return AttackDamage * 2;
-            }
-
-            return AttackDamage;
+            Name = "Sling";
+            MaxDmg = maxDmg;
+            MinDmg = minDmg;
+            LevelRequirement = levelRequirement;
+            CritChanceSuccessValue = critChanceSuccessValue;
+            AttackInitialize();
         }
 
         public override string WeaponInfo()

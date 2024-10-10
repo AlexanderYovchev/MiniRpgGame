@@ -12,28 +12,20 @@ namespace MiniRpgGame.Monsters.Sea_Monsters
     {
         private Random attack = new Random();
 
+        private int healthCap = 150;
         private const int minDmg = 8;
         private const int maxDmg = 21;
         private const int xpDrop = 250;
         public Jellyfish()
         {
             Name = "Jellyfish";
-
+            HealthCap = healthCap;
+            MinDmg = minDmg;
+            MaxDmg = maxDmg;
+            XpDrop = xpDrop;
+            AttackDmg = attack.Next(MinDmg, MaxDmg);
 
         }
-
-        public override int HealthCap { get; set; } = 150;
-
-        public override int MinDmg { get => minDmg; }
-
-        public override int MaxDmg { get => maxDmg; }
-
-        public override int AttackDmg => attack.Next(minDmg, maxDmg);
-
         public override ImageSource MonsterImage { get; set; } = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/jellyfishImage.png"));
-
-        public override int XpDrop { get => xpDrop; }
-
-        public override int CritChance { get => base.CritChance; set => base.CritChance = value; }
     }
 }

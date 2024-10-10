@@ -8,36 +8,20 @@ namespace MiniRpgGame.Weapons.MageWeapon.MageStarterWeapons
 {
     public class WoodenStaff : MageStartedWeaponClass
     {
-        private Random attackDamage = new Random();
+        private const int critChanceSuccessValue = 50;
         private const int minDmg = 1;
         private const int maxDmg = 12;
+        private const int levelRequirement = 0;
 
         public WoodenStaff()
         {
-
+            Name = "Wooden Staff";
+            MaxDmg = maxDmg;
+            MinDmg = minDmg;
+            LevelRequirement = levelRequirement;
+            CritChanceSuccessValue = critChanceSuccessValue;
+            AttackInitialize();
         }
-
-        public override string Name { get; set; } = "Wooden Staff";
-
-        public override int MinDmg { get; set; } = minDmg;
-
-        public override int MaxDmg { get => maxDmg;}
-
-        public override Random CritChance { get; set; } = new Random();
-
-
-        public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);
-
-        public override int AttackInitialize()
-        {
-            if (CritChance.Next(1, 100) >= 50)
-            {
-                return AttackDamage * 2;
-            }
-
-            return AttackDamage;
-        }
-
         public override string WeaponInfo()
         {
             StringBuilder sb = new StringBuilder();

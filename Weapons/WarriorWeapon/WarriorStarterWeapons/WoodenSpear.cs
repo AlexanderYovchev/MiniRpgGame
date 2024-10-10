@@ -8,36 +8,20 @@ namespace MiniRpgGame.Weapons.WarriorWeapon.WarriorStarterWeapons
 {
     public class WoodenSpear : WarriorStartedWeapon
     {
-        private Random attackDamage = new Random();
+        private const int critChanceSuccessValue = 90;
         private const int minDmg = 6;
         private const int maxDmg = 8;
+        private const int levelRequirement = 0;
 
         public WoodenSpear()
         {
-
+            Name = "Wooden Spear";
+            MaxDmg = maxDmg;
+            MinDmg = minDmg;
+            LevelRequirement = levelRequirement;
+            CritChanceSuccessValue = critChanceSuccessValue;
+            AttackInitialize();
         }
-
-        public override string Name { get; set; } = "Wooden Spear";
-
-        public override int MinDmg { get; set; } = minDmg;
-
-        public override int MaxDmg { get; set; } = maxDmg;
-
-        public override Random CritChance { get; set; } = new Random();
-
-
-        public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);
-
-        public override int AttackInitialize()
-        {
-            if (CritChance.Next(1, 100) >= 90)
-            {
-                return AttackDamage * 2;
-            }
-
-            return AttackDamage;
-        }
-
         public override string WeaponInfo()
         {
             StringBuilder sb = new StringBuilder();

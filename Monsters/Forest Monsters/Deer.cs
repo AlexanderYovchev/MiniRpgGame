@@ -12,29 +12,27 @@ namespace MiniRpgGame.Monsters.Forest_Monsters
     {
         private Random attack = new Random();
 
+        private int healthCap = 100;
         private const int minDmg = 4;
         private const int maxDmg = 8;
         private const int xpDrop = 50;
         public Deer()
         {
             Name = "Deer";
-            
+            HealthCap = healthCap;
+            MinDmg = minDmg;
+            MaxDmg = maxDmg;
+            XpDrop = xpDrop;
 
         }
+ 
 
-        public override int HealthCap { get; set; } = 100;
-
-        public override int MinDmg { get => minDmg; }
-
-        public override int MaxDmg { get => maxDmg; }
-
-        public override int AttackDmg => attack.Next(minDmg, maxDmg);
 
         public override ImageSource MonsterImage { get; set; } = new BitmapImage(new Uri(@"pack://application:,,,/MiniRpgGame;component/images/deerImage.png"));
 
-        public override int XpDrop { get => xpDrop; }
+        
 
-        public override int CritChance { get => base.CritChance; set => base.CritChance = value; }
+        
 
         
     }

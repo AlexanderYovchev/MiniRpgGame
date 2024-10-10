@@ -9,30 +9,13 @@ namespace MiniRpgGame.Monsters
 {
     public class ForestMonstersAbstract : MonsterAbstractClass
     {
-        private Random attack = new Random();
-
-
         public ForestMonstersAbstract()
         {
 
         }
 
-        public string Name { get; set; }
-
-        public override int HealthCap { get; set; }
-        public override int Health { get; set; }
-
-        public override int MinDmg { get; set; }
-
-        public override int MaxDmg { get; set; }
-        public override int AttackDmg => attack.Next(MinDmg,MaxDmg);
-
-        public override ImageSource MonsterImage { get; set; }
-
         public override Random RandomCritGenerator { get; set; } = new Random();
-        public override int CritChance { get; set; }
-        public override int XpDrop { get; }
-
+        
         public override int MonsterAttack()
         {
             if (RandomCritGenerator.Next(1,100) <= CritChance)

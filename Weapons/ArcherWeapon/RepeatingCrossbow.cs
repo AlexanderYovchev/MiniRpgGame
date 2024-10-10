@@ -8,36 +8,19 @@ namespace MiniRpgGame.Weapons.ArcherWeapon
 {
     public class RepeatingCrossbow : ArcherWeaponsClass
     {
-        private Random attackDamage = new Random();
+        private const int critChanceSuccessValue = 60;
         private const int minDmg = 5;
         private const int maxDmg = 10;
+        private const int levelRequirement = 15;
 
         public RepeatingCrossbow()
         {
-
-        }
-
-        public override string Name { get; set; } = "Repeating Crossbow";
-
-        public override int MinDmg { get; set; } = minDmg;
-
-        public override int MaxDmg { get; set; } = maxDmg;
-
-        public override Random CritChance { get; set; } = new Random();
-
-        public override int LevelRequirement { get; set; } = 15;
-
-
-        public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);
-
-        public override int AttackInitialize()
-        {
-            if (CritChance.Next(1, 100) >= 60)
-            {
-                return AttackDamage * 8;
-            }
-
-            return AttackDamage;
+            Name = "Repeating Crossbow";
+            MaxDmg = maxDmg;
+            MinDmg = minDmg;
+            LevelRequirement = levelRequirement;
+            CritChanceSuccessValue = critChanceSuccessValue;
+            AttackInitialize();
         }
 
         public override string WeaponInfo()

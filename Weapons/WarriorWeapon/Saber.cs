@@ -8,29 +8,20 @@ namespace MiniRpgGame.Weapons.WarriorWeapon
 {
     public class Saber : WarriorWeaponsClass
     {
-        private Random attackDamage = new Random();
+        private const int critChanceSuccessValue = 60;
         private const int minDmg = 20;
         private const int maxDmg = 37;
-        public override string Name { get; set; } = "Saber";
+        private const int levelRequirement = 15;
 
-        public override int MinDmg { get; set; } = minDmg;
-        public override int MaxDmg { get; set; } = maxDmg;
-
-        public override int LevelRequirement { get; set; } = 15;
-
-        public override int AttackDamage => attackDamage.Next(MinDmg, MaxDmg);
-
-        public override Random CritChance { get; set; } = new Random();
-
-        public override int AttackInitialize()
+        public Saber()
         {
-            if (CritChance.Next(1, 100) >= 60)
-            {
-                return AttackDamage * 2;
-            }
-            return AttackDamage;
+            Name = "Saber";
+            MaxDmg = maxDmg;
+            MinDmg = minDmg;
+            LevelRequirement = levelRequirement;
+            CritChanceSuccessValue = critChanceSuccessValue;
+            AttackInitialize();
         }
-
         public override string WeaponInfo()
         {
             StringBuilder sb = new StringBuilder();

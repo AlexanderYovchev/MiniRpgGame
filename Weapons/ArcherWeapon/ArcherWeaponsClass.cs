@@ -15,12 +15,19 @@ namespace MiniRpgGame.Weapons.ArcherWeapon
         public virtual int MaxDmg { get; set; }
 
         public virtual int LevelRequirement { get; set; }
-        public virtual int AttackDamage { get; set; }
+        public virtual int AttackDamage => Random.Shared.Next(MinDmg, MaxDmg);
 
         public virtual Random CritChance { get; set; } = new Random();
 
+        public int CritChanceSuccessValue { get; set;}
+
         public virtual int AttackInitialize()
         {
+            if (CritChance.Next(1, 100) >= CritChanceSuccessValue)
+            {
+                return AttackDamage * 2;
+            }
+
             return AttackDamage;
         }
 

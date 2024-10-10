@@ -11,13 +11,6 @@ namespace MiniRpgGame.WeaponsLists
 {
     public class MageWeaponsRepository : WeaponsRepository
     {
-
-        public bool MeetsRequirements(IWeapon weapon, int charLevel)
-        {
-            return base.MeetsRequirements(weapon, charLevel);
-        }
-
-
         public override void PopulateList()
         {
             Assembly assembly = Assembly.GetExecutingAssembly();

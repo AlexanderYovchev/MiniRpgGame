@@ -8,30 +8,20 @@ namespace MiniRpgGame.Weapons.WarriorWeapon
 {
     public class HeavySword : WarriorWeaponsClass
     {
-        private Random attackDamage = new Random();
+        private const int critChanceSuccessValue = 60;
         private const int minDmg = 15;
-        private const int maxDmg = 20; 
-        public override string Name { get; set; } = "Heavy Sword";
+        private const int maxDmg = 20;
+        private const int levelRequirement = 12;
 
-        public override int MinDmg { get; set; } = minDmg;
-
-        public override int MaxDmg { get; set; } = maxDmg;
-
-        public override int LevelRequirement { get; set; } = 12;
-
-        public override int AttackDamage => attackDamage.Next(MinDmg,MaxDmg);
-
-        public override Random CritChance { get; set; } = new Random();
-
-        public override int AttackInitialize()
+        public HeavySword()
         {
-            if (CritChance.Next(1,100) >= 60)
-            {
-                return AttackDamage * 2;
-            }
-            return AttackDamage;
+            Name = "Heavy Sword";
+            MaxDmg = maxDmg;
+            MinDmg = minDmg;
+            LevelRequirement = levelRequirement;
+            CritChanceSuccessValue = critChanceSuccessValue;
+            AttackInitialize();
         }
-
         public override string WeaponInfo()
         {
             StringBuilder sb = new StringBuilder();
