@@ -5,6 +5,7 @@ using MiniRpgGame.Monsters.Mountain_Monsters;
 using MiniRpgGame.Monsters.Sea_Monsters;
 using MiniRpgGame.Monsters.Swamp_Monsters;
 using MiniRpgGame.Monsters.Underworld_Monsters;
+using MiniRpgGame.Regions;
 using MiniRpgGame.Weapons;
 using MiniRpgGame.Weapons.WarriorWeapon;
 using MiniRpgGame.WeaponsLists;
@@ -44,14 +45,15 @@ namespace MiniRpgGame.UserControls
         public WeaponsRepository ShopRepository { get; set; }
         public IMonster CurrentMonster { get; set; }
 
+        public Region Region { get; set; }
         public ImageBrush CurrentImage { get; set; }
 
 
-        public MainMenuUC(ICharacterClasses currentCharacter, IWeapon currentWeapon, IMonster currentMonster, ImageBrush currentImage)
+        public MainMenuUC(ICharacterClasses currentCharacter, IWeapon currentWeapon, IMonster currentMonster, ImageBrush currentImage, Region region)
         {
             InitializeComponent();
 
-            TransferStats(currentCharacter, currentWeapon, currentMonster, currentImage);
+            TransferStats(currentCharacter, currentWeapon, currentMonster, currentImage, region);
 
             SavedStats();
 
@@ -103,6 +105,7 @@ namespace MiniRpgGame.UserControls
 
         private void RoamButton_Click(object sender, RoutedEventArgs e)
         {
+
             originalMonsterType = CurrentMonster.GetType();
             int encounterValue = RandomEncounter.Next(1, 1000);
             if (CurrentMonster.GetType().Name == "ForestMonstersAbstract")
@@ -176,6 +179,7 @@ namespace MiniRpgGame.UserControls
                 else
                 {
                     RoamButton.IsEnabled = true;
+                    MonsterTypeTextBlock.Text = "Nothing Found. Keep Roaming!";
                 }
             }
 
@@ -352,12 +356,20 @@ namespace MiniRpgGame.UserControls
             }
         }
 
-        private void worker_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
+        private async void worker_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
             int damage = CurrentMonster.MonsterAttack();
             CurrentCharacter.Health -= damage;
 
             CharacterHealthBar.Value = CurrentCharacter.Health;
+
+            if (!IsCharacterAlive())
+            {
+                EventMessageBlock.Text = "YOU DIED!";
+
+                await Task.Delay(1000);
+                Application.Current.Shutdown();
+            }
 
             ShowFloatingDamage(CharacterFloatDmg, damage);
 
@@ -366,7 +378,7 @@ namespace MiniRpgGame.UserControls
             CharacterInfoButton.IsEnabled = true;
             RegionsButton.IsEnabled = true;
             ShopButton.IsEnabled = true;
-            RoamButton.IsEnabled = true;
+            RoamButton.IsEnabled = false;
             CharacterAttackButton.IsEnabled = true;
         }
 
@@ -393,8 +405,9 @@ namespace MiniRpgGame.UserControls
             }
         }
 
-        public void TransferStats(ICharacterClasses currentCharacter, IWeapon currentWeapon, IMonster currentMonster, ImageBrush currentImage)
+        public void TransferStats(ICharacterClasses currentCharacter, IWeapon currentWeapon, IMonster currentMonster, ImageBrush currentImage, Region region)
         {
+
             this.CurrentImage = currentImage;
             this.CurrentImage.ImageSource = currentImage.ImageSource;
             BackgroundImage.ImageSource = this.CurrentImage.ImageSource;
@@ -406,6 +419,15 @@ namespace MiniRpgGame.UserControls
             CharacterHealthBar.Maximum = CurrentCharacter.HealthCap;
             CharacterHealthBar.Value = CurrentCharacter.Health;
             
+            this.Region = region;
+            if (Region != null)
+            {
+                RegionTextBlock.Text = Region.Name;
+            }
+            else
+            {
+                RegionTextBlock.Text = "Region";
+            }
 
             if (CurrentMonster != null)
             {
@@ -471,14 +493,22 @@ namespace MiniRpgGame.UserControls
             MonsterImage.Source = CurrentMonster.MonsterImage;
             MonsterHealthBar.Maximum = CurrentMonster.HealthCap;
             MonsterHealthBar.Value = MonsterHealthBar.Maximum;
+            MonsterTypeTextBlock.Text = CurrentMonster.Name;
+            MonsterAttackTextBlock.Text = $"Damage: {CurrentMonster.MinDmg} - {CurrentMonster.MaxDmg}";
             CurrentMonster.Health = (int)MonsterHealthBar.Value;
             RoamButton.IsEnabled = false;
             MonsterImage.Visibility = Visibility.Visible;
+            
         }
 
         private void ShopButton_Click(object sender, RoutedEventArgs e)
         {
-            Content = new ShopUC(CurrentCharacter, CurrentWeapon, CurrentMonster, CurrentImage);
+            Content = new ShopUC(CurrentCharacter, CurrentWeapon, CurrentMonster, CurrentImage, Region);
+        }
+
+        private bool IsCharacterAlive()
+        {
+            return CurrentCharacter.Health > 0;
         }
     }
 }

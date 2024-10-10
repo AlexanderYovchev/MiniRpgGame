@@ -14,6 +14,10 @@ namespace MiniRpgGame.Monsters
         public int HealthCap { get; set; }
         public int Health { get; set; }
 
+        public int MinDmg { get; set; }
+
+        public int MaxDmg { get; set; }
+
         public int AttackDmg { get; set; }
 
         public ImageSource MonsterImage { get; set; }

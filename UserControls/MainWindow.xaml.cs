@@ -1,6 +1,7 @@
 ﻿using MiniRpgGame.CharacterClasses;
 using MiniRpgGame.CharacterClasses.CharacterClassInterface;
 using MiniRpgGame.Monsters;
+using MiniRpgGame.Regions;
 using MiniRpgGame.UserControls;
 using MiniRpgGame.Weapons;
 using MiniRpgGame.Weapons.ArcherWeapon.ArcherStarterWeapons;
@@ -35,6 +36,7 @@ namespace MiniRpgGame
 
         public IMonster Monster { get; set; }
 
+        public Region Region { get; set; }
         public ImageBrush CurrentImage { get; set; }
         public MainWindow()
         {
@@ -78,7 +80,7 @@ namespace MiniRpgGame
                     ErrorMsgBlock.Text = $"{CurrentCharacter.Name}\n{CurrentCharacter.GetType().Name}\n{CurrentWeapon.Name}";
 
 
-                    var newContent = new MainMenuUC(CurrentCharacter, CurrentWeapon, Monster, CurrentImage);
+                    var newContent = new MainMenuUC(CurrentCharacter, CurrentWeapon, Monster, CurrentImage, Region);
                     Content = newContent;
 
                     

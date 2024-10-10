@@ -18,7 +18,7 @@ namespace MiniRpgGame.Weapons.MageWeapon
 
         public virtual int AttackDamage => Random.Shared.Next(MinDmg, MaxDmg);
 
-        public virtual Random CritChance { get; set; }
+        public virtual Random CritChance { get; set; } = new Random();
 
         public int CritChanceSuccessValue { get; set; }
 

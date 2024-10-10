@@ -1,5 +1,6 @@
 ﻿using MiniRpgGame.CharacterClasses.CharacterClassInterface;
 using MiniRpgGame.Monsters;
+using MiniRpgGame.Regions;
 using MiniRpgGame.Weapons;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,8 @@ namespace MiniRpgGame.UserControls
         public IMonster CurrentMonster { get; set; }
 
         public ImageBrush CurrentImage { get; set; }
+
+        public Region Region { get; set; }
         public CharacterUC(ICharacterClasses currentCharacter, IWeapon currentWeapon, IMonster currentMonster, ImageBrush currentImage)
         {
             InitializeComponent();
@@ -68,7 +71,7 @@ namespace MiniRpgGame.UserControls
 
             if (mainWindow != null)
             {
-                mainWindow.Content = new MainMenuUC(CurrentCharacter, CurrentWeapon, CurrentMonster, CurrentImage);
+                mainWindow.Content = new MainMenuUC(CurrentCharacter, CurrentWeapon, CurrentMonster, CurrentImage, Region);
                 
             }
         }

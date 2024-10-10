@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MiniRpgGame.Regions
 {
-    public class IRegion
+    public class Region
     {
         public string Name { get; set; }
 
